@@ -66,6 +66,7 @@ class User(UserMixin):
         dic['salt'] = gensalt()
         password = hashpw(self.password.encode('utf-8'), dic['salt'])
         dic['password'] = password
+        del dic['_id']
         user_collection.insert_one(dic)
         
     @classmethod
